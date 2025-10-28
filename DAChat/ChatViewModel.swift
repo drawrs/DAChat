@@ -41,7 +41,7 @@ class ChatViewModel: ObservableObject {
     
     func setupLanguageModel(){
         
-        languageModelSession = LanguageModelSession(tools: [CurrentDateTimeTool()],
+        languageModelSession = LanguageModelSession(tools: [CurrentDateTimeTool(), WebAnalyserTool(), UserInfoTool()],
                                                     instructions: instructions)
         print("Language model setup complete.")
     }
