@@ -128,23 +128,37 @@ struct ContentView: View {
             }
             
             ForEach(viewModel.messages, id: \.id) { message in
-                
-                
                 HStack {
                     if message.isFromUser {
                         Spacer()
                         Markdown(message.content)
-//                        Text(message.content)
-//                            .font(.body)
-//                            .multilineTextAlignment(.leading)
-//                            .frame(width: .infinity, alignment: .leading)
+                            .markdownTextStyle {
+                                ForegroundColor(.white)
+                            }
+                            .padding()
+                            .background(.blue)
+                            .clipShape(RoundedRectangle(cornerRadius: 12.0))
                         
                     } else {
-                        Markdown(message.content)
-//                        Text(message.content)
-//                            .font(.body)
-//                            .multilineTextAlignment(.leading)
-//                            .frame(width: .infinity, alignment: .leading)
+                        if message.content == "" {
+                            Image(systemName: "ellipsis")
+                                .font(.title)
+                                .symbolEffect(.variableColor.iterative.dimInactiveLayers.nonReversing, options: .repeat(.continuous))
+                                .padding()
+                                .background(.gray.opacity(0.2))
+                                .clipShape(RoundedRectangle(cornerRadius: 12.0))
+                        } else {
+                            Markdown(message.content)
+                                .markdownTextStyle {
+                                    ForegroundColor(.black)
+                                }
+                                .padding()
+                                .background(.gray.opacity(0.2))
+                                .clipShape(RoundedRectangle(cornerRadius: 12.0))
+                        }
+                        
+                        
+                        
                         Spacer()
                     }
                 }
