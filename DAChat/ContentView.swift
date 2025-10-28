@@ -1,6 +1,7 @@
 import SwiftUI
 import FoundationModels
 import Playgrounds
+import MarkdownUI
 
 struct ContentView: View {
     @State private var prompt: String = ""
@@ -132,16 +133,18 @@ struct ContentView: View {
                 HStack {
                     if message.isFromUser {
                         Spacer()
-                        Text(message.content)
-                            .font(.body)
-                            .multilineTextAlignment(.leading)
-                            .frame(width: .infinity, alignment: .leading)
+                        Markdown(message.content)
+//                        Text(message.content)
+//                            .font(.body)
+//                            .multilineTextAlignment(.leading)
+//                            .frame(width: .infinity, alignment: .leading)
                         
                     } else {
-                        Text(message.content)
-                            .font(.body)
-                            .multilineTextAlignment(.leading)
-                            .frame(width: .infinity, alignment: .leading)
+                        Markdown(message.content)
+//                        Text(message.content)
+//                            .font(.body)
+//                            .multilineTextAlignment(.leading)
+//                            .frame(width: .infinity, alignment: .leading)
                         Spacer()
                     }
                 }
