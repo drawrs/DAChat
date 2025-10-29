@@ -31,7 +31,7 @@ class ChatViewModel: ObservableObject {
     @Published var instructions: String = ""
     @Published var messages: [ChatMessage] = []
     @Published var temperature: Double = 0.7
-    @Published var maximumResponseTokens: Int = 200
+    @Published var maximumResponseTokens: Int = 4000
     
     var languageModelSession: LanguageModelSession?
     
@@ -41,7 +41,12 @@ class ChatViewModel: ObservableObject {
     
     func setupLanguageModel(){
         
-        languageModelSession = LanguageModelSession(tools: [CurrentDateTimeTool(), WebAnalyserTool(), UserInfoTool()],
+        languageModelSession = LanguageModelSession(tools: [
+                                                            CurrentDateTimeTool(),
+                                                            WebAnalyserTool(),
+                                                            UserInfoTool(),
+                                                            CreateImageTool()
+                                                           ],
                                                     instructions: instructions)
         print("Language model setup complete.")
     }
